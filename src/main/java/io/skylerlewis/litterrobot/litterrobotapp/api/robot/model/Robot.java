@@ -39,8 +39,8 @@ public class Robot {
     private String unitStatus;
     private String sleepModeEndTime;
     private String sleepModeStartTime;
-    private LocalDateTime lastSeen;
-    private LocalDateTime setupDate;
+    private String lastSeen;
+    private String setupDate;
     private Boolean isOnboarded;
     private Boolean didNotifyOffline;
     private Boolean autoOfflineDisabled;

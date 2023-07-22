@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class Controller {
+public class ApiController {
 
     private RobotService robotService;
     private ActivityService activityService;
@@ -25,9 +25,9 @@ public class Controller {
 
     private String litterRobotId;
 
-    public Controller(@Autowired RobotService robotService,
-                      @Autowired ActivityService activityService,
-                      @Autowired InsightsService insightsService) {
+    public ApiController(@Autowired RobotService robotService,
+                         @Autowired ActivityService activityService,
+                         @Autowired InsightsService insightsService) {
         this.robotService = robotService;
         this.activityService = activityService;
         this.insightsService = insightsService;

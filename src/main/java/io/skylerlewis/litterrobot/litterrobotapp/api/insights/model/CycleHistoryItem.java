@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @ToString
 public class CycleHistoryItem {
 
-    LocalDate date;
+    String date;
     Long cyclesCompleted;
 
 }

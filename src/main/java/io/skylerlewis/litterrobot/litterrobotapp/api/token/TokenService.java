@@ -43,10 +43,8 @@ public class TokenService {
     @Autowired
     private WhiskerAuthProperties whiskerAuthProperties;
 
-    public TokenService(@Autowired RestTemplate restTemplate) {
+    public TokenService(@Autowired RestTemplate restTemplate, @Autowired ObjectMapper mapper) {
         this.restTemplate = restTemplate;
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
         this.mapper = mapper;
     }
 
