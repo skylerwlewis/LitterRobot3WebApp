@@ -34,7 +34,7 @@ const ActivityHistoryView = () => {
   const { activityHistory } = useContext(ActivityHistoryContext);
   const { activityHistoryLimit } = useContext(SettingsContext);
 
-  const rows = activityHistory.activities.map(activity => createData(activity.unitStatus, statusMap[activity.unitStatus], moment(activity.timestamp + "Z").format(timeFormatString)));
+  const rows = activityHistory.activities.map(activity => createData(activity.unitStatus, statusMap[activity.unitStatus], moment(activity.timestamp + 'Z').format(timeFormatString)));
 
   const getSx = (unitStatus: string) => {
     let sx = {};

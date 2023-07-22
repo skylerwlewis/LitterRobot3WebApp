@@ -44,8 +44,8 @@ const RobotView = () => {
     createData('Sleep Mode End Time', robot.sleepModeEndTime === '0' ? 'N/A' : robot.sleepModeEndTime),
     createData('Power Status', robot.powerStatus),
     createData('Unit Status', statusMap[robot.unitStatus]),
-    createData('Last Seen', moment(robot.lastSeen).format(timeFormatString)),
-    createData('Setup Date', moment(robot.setupDate).format(timeFormatString)),
+    createData('Last Seen', moment(robot.lastSeen + 'Z').format(timeFormatString)),
+    createData('Setup Date', moment(robot.setupDate + 'Z').format(timeFormatString)),
     createData('Is Onboarded?', robot.isOnboarded ? 'Yes' : 'No'),
     createData('Did Notify Offline?', robot.didNotifyOffline ? 'Yes' : 'No'),
     createData('Auto Offline Disabled?', robot.autoOfflineDisabled ? 'Yes' : 'No')
