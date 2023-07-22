@@ -3,7 +3,7 @@ whisker:
     endpoint: https://autopets.sso.iothings.site/oauth/token
     clientId: IYXzWN908psOm7sNpe4G.ios.whisker.robots
     clientSecret: C63CLXOmwNaqLTB2xXo6QIWGwwBamcPuaul
-    early-refresh-minutes: 59
+    early-refresh-minutes: 5
     credentials:
       username: ${LITTER_ROBOT_USER}
       password: ${LITTER_ROBOT_PASSWORD}
