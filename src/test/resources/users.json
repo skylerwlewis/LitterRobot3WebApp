@@ -1,0 +1,39 @@
+{
+  "user": {
+    "userId": "1002320",
+    "userEmail": "skyler@skylerlewis.io",
+    "firstName": "Skyler",
+    "lastName": "Lewis"
+  },
+  "litterRobots": [
+    {
+      "userId": "1002320",
+      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotSerial": "LR3CI488589",
+      "litterRobotNickname": "Luna's Litterbox"
+    }
+  ],
+  "mobileDevices": [
+    {
+      "userId": "1002320",
+      "oneSignalPlayerId": "6183db7a-86d2-11ec-826d-ba3333b11f78",
+      "deviceId": "1002320-6183db7a-86d2-11ec-826d-ba3333b11f78",
+      "version": "3.0"
+    }
+  ],
+  "settings": {
+    "all_notifications": "1",
+    "general_notifications": "1",
+    "fault_notifications": "1",
+    "DFI_notifications": "1",
+    "CCC_notifications": "0",
+    "CSI_notifications": "1",
+    "CSF_notifications": "1",
+    "PD_notifications": "1",
+    "OTF_notifications": "1",
+    "DHF_notifications": "1",
+    "BR_notifications": "1",
+    "offline_notifications": "1",
+    "userId": "1002320"
+  }
+}
