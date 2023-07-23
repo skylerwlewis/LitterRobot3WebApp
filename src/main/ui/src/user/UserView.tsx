@@ -1,7 +1,8 @@
 import React, {useContext} from "react";
 import {
+  Alert,
   Card,
-  CardContent,
+  CardContent, CircularProgress,
   Container,
   Paper,
   Table,
@@ -50,7 +51,13 @@ const UserView = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        : null}
+        :
+        userLoading ?
+          <CircularProgress/>
+          :
+          userError ?
+            <Alert severity="error">There was a problem retrieving the user data.</Alert>
+            : null}
     </>
   );
 

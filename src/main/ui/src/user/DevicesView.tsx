@@ -1,7 +1,8 @@
 import React, {useContext} from "react";
 import {
+  Alert,
   Card,
-  CardContent,
+  CardContent, CircularProgress,
   Container,
   Paper,
   Table,
@@ -31,31 +32,37 @@ const DevicesView = () => {
 
   return (
     <>
-      <Container>
-        {mobileDeviceRows.length > 0 ?
-          mobileDeviceRows.map((rows, index)=>
-              <Card sx={{maxWidth: 345}} key={index}>
-                <CardContent>
-                  <Table>
-                    <TableBody>
-                      {rows.map((row) => (
-                        <TableRow
-                          key={row.name}
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            {row.name}
-                          </TableCell>
-                          <TableCell align="right">{row.value}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
-            ) : null
-        }
+      {mobileDeviceRows.length > 0 ?
+        <Container>
+          {mobileDeviceRows.map((rows, index) =>
+            <Card sx={{maxWidth: 345}} key={index}>
+              <CardContent>
+                <Table>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow
+                        key={row.name}
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.value}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          )}
         </Container>
+        :
+        userLoading ?
+          <CircularProgress/>
+          :
+          userError ?
+            <Alert severity="error">There was a problem retrieving the devices data.</Alert>
+            : null}
     </>
   );
 

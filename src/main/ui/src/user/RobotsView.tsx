@@ -1,7 +1,8 @@
 import React, {useContext} from "react";
 import {
+  Alert,
   Card, CardActionArea,
-  CardContent,
+  CardContent, CircularProgress,
   Container,
   Paper,
   Table,
@@ -34,9 +35,9 @@ const RobotsView = () => {
 
   return (
     <>
-      <Container>
-        {litterRobotRows.length > 0 ?
-          litterRobotRows.map((rows, index) =>
+      {litterRobotRows.length > 0 ?
+        <Container>
+          {litterRobotRows.map((rows, index) =>
             <Card sx={{maxWidth: 345}} key={index} onClick={() => {
               navigate(`/robot/${rows[0].value}`)
             }}>
@@ -60,9 +61,15 @@ const RobotsView = () => {
                 </CardContent>
               </CardActionArea>
             </Card>
-          ) : null
-        }
-      </Container>
+          )}
+        </Container>
+        :
+        userLoading ?
+          <CircularProgress/>
+          :
+          userError ?
+            <Alert severity="error">There was a problem retrieving the robots data.</Alert>
+            : null}
     </>
   );
 
