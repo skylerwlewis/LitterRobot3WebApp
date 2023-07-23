@@ -17,7 +17,7 @@ public class UserRestDelegate extends WhiskerDelegate implements UserDelegate {
     private final WhiskerApiProperties whiskerApiProperties;
 
     public UserRestDelegate(@Autowired RestTemplate restTemplate,
-                                @Autowired WhiskerApiProperties whiskerApiProperties) {
+                            @Autowired WhiskerApiProperties whiskerApiProperties) {
         this.restTemplate = restTemplate;
         this.whiskerApiProperties = whiskerApiProperties;
     }

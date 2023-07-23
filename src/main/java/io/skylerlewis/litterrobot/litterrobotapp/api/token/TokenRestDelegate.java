@@ -23,7 +23,7 @@ public class TokenRestDelegate implements TokenDelegate {
     }
 
     public ResponseEntity<TokenResponse> getTokenResponse(HttpEntity<MultiValueMap<String, String>> httpEntity) {
-        return restTemplate.exchange(whiskerAuthProperties.getAuthEndpoint(), HttpMethod.POST, httpEntity, TokenResponse .class);
+        return restTemplate.exchange(whiskerAuthProperties.getAuthEndpoint(), HttpMethod.POST, httpEntity, TokenResponse.class);
     }
 
 }

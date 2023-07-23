@@ -7,6 +7,6 @@ import org.springframework.util.MultiValueMap;
 
 public interface TokenDelegate {
 
-    public ResponseEntity<TokenResponse> getTokenResponse(HttpEntity<MultiValueMap<String, String>> httpEntity);
+    ResponseEntity<TokenResponse> getTokenResponse(HttpEntity<MultiValueMap<String, String>> httpEntity);
 
 }
