@@ -2,62 +2,62 @@
   "activities": [
     {
       "unitStatus": "RDY",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-17T01:33:36.767785"
     },
     {
       "unitStatus": "CCC",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T17:33:32.048452"
     },
     {
       "unitStatus": "CCP",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T17:31:14.646954"
     },
     {
       "unitStatus": "CST",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T17:22:25.615030"
     },
     {
       "unitStatus": "RDY",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T16:50:10.504299"
     },
     {
       "unitStatus": "CCC",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T13:50:05.015212"
     },
     {
       "unitStatus": "CCP",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T13:47:45.957400"
     },
     {
       "unitStatus": "CST",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T13:40:15.608550"
     },
     {
       "unitStatus": "RDY",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T13:25:41.338128"
     },
     {
       "unitStatus": "CCC",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T01:25:34.804690"
     },
     {
       "unitStatus": "CCP",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T01:23:19.225885"
     },
     {
       "unitStatus": "CST",
-      "litterRobotId": "1f559f3137ec8a",
+      "litterRobotId": "123",
       "timestamp": "2023-07-16T01:14:53.791808"
     }
   ]

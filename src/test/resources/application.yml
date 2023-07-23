@@ -1,0 +1,18 @@
+whisker:
+  auth:
+    endpoint: http://not-used-for-testing
+    clientId: test-client-id
+    clientSecret: test-client-secret
+    early-refresh-minutes: 0
+    credentials:
+      username: test@example.com
+      password: testing-password
+  api:
+    key: test-api-key
+    default: http://not-used-for-testing
+    endpointPaths:
+      users: /not-used-for-testing
+      robots: /not-used-for-testing
+      robot: /not-used-for-testing
+      activity: /not-used-for-testing
+      insights: /not-used-for-testing

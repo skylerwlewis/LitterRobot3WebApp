@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @ToString
 @Data
 public class Robot {

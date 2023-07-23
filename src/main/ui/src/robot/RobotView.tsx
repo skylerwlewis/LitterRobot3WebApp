@@ -1,16 +1,6 @@
 import React, {useContext} from "react";
 import {RobotContext} from "./RobotProvider";
-import {
-  Alert,
-  CircularProgress,
-  Container,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow
-} from "@mui/material";
+import {Alert, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import moment from "moment";
 import {statusMap, timeFormatString} from "../StatusMap";
 

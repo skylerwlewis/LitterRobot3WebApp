@@ -4,7 +4,7 @@ import io.skylerlewis.litterrobot.litterrobotapp.api.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 
-public class WhiskerService {
+public class WhiskerDelegate {
 
     @Autowired
     private TokenService tokenService;

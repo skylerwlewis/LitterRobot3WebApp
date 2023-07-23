@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import {Button, Container, Paper, Stack, TextField, Typography} from "@mui/material";
+import {Button, Container, TextField, Typography} from "@mui/material";
 import {SettingsContext} from "./SettingsProvider";
 
 const isInteger = (value: string) => {

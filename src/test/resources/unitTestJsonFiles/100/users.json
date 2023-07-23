@@ -1,23 +1,23 @@
 {
   "user": {
-    "userId": "1002320",
-    "userEmail": "skyler@skylerlewis.io",
-    "firstName": "Skyler",
-    "lastName": "Lewis"
+    "userId": "100",
+    "userEmail": "test@example.com",
+    "firstName": "Test",
+    "lastName": "User"
   },
   "litterRobots": [
     {
-      "userId": "1002320",
-      "litterRobotId": "1f559f3137ec8a",
-      "litterRobotSerial": "LR3CI488589",
-      "litterRobotNickname": "Luna's Litterbox"
+      "userId": "100",
+      "litterRobotId": "123",
+      "litterRobotSerial": "cereal-number-123",
+      "litterRobotNickname": "Our Cat's Litterbox"
     }
   ],
   "mobileDevices": [
     {
-      "userId": "1002320",
-      "oneSignalPlayerId": "6183db7a-86d2-11ec-826d-ba3333b11f78",
-      "deviceId": "1002320-6183db7a-86d2-11ec-826d-ba3333b11f78",
+      "userId": "100",
+      "oneSignalPlayerId": "one-signal-player-id",
+      "deviceId": "device-id",
       "version": "3.0"
     }
   ],
@@ -34,6 +34,6 @@
     "DHF_notifications": "1",
     "BR_notifications": "1",
     "offline_notifications": "1",
-    "userId": "1002320"
+    "userId": "100"
   }
 }

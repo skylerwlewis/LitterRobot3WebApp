@@ -1,6 +1,6 @@
-import { Box, IconButton, Menu, MenuItem, Typography } from "@mui/material"
+import {Box, IconButton, Menu, MenuItem, Typography} from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import React from "react";
 import MenuLink from "./MenuLink";
 

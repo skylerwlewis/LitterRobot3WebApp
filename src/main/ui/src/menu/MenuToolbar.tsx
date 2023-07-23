@@ -1,6 +1,6 @@
-import { Box, Button, Toolbar, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom';
-import { PropsWithChildren } from 'react';
+import {Box, Button, Toolbar, Typography} from '@mui/material'
+import {useNavigate} from 'react-router-dom';
+import {PropsWithChildren} from 'react';
 import MenuLink from './MenuLink';
 
 interface MenuToolbarProps {

@@ -6,46 +6,46 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.skylerlewis.litterrobot.litterrobotapp.api.WhiskerAuthProperties;
 import io.skylerlewis.litterrobot.litterrobotapp.api.token.model.TokenPayload;
 import io.skylerlewis.litterrobot.litterrobotapp.api.token.model.TokenResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 
 @Component
 @Slf4j
 public class TokenService {
 
-    private static String GRANT_TYPE_PASSWORD = "password";
-    private static String GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
+    private static final String GRANT_TYPE_PASSWORD = "password";
+    private static final String GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
 
-    private RestTemplate restTemplate;
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
+    private final WhiskerAuthProperties whiskerAuthProperties;
+    private final TokenDelegate tokenDelegate;
 
     private TokenResponse cachedTokenResponse;
     private DecodedJWT cachedJwt;
     private TokenPayload cachedTokenPayload;
 
-    @Autowired
-    private WhiskerAuthProperties whiskerAuthProperties;
-
-    public TokenService(@Autowired RestTemplate restTemplate, @Autowired ObjectMapper mapper) {
-        this.restTemplate = restTemplate;
+    public TokenService(@Autowired ObjectMapper mapper,
+                        @Autowired WhiskerAuthProperties whiskerAuthProperties,
+                        @Autowired TokenDelegate tokenDelegate) {
         this.mapper = mapper;
+        this.whiskerAuthProperties = whiskerAuthProperties;
+        this.tokenDelegate = tokenDelegate;
     }
 
     public String getAccessToken() {
@@ -62,12 +62,12 @@ public class TokenService {
         if (cachedTokenResponse == null || !isTokenValid(cachedJwt, ZonedDateTime.now().plus(whiskerAuthProperties.getEarlyRefreshMinutes(), ChronoUnit.MINUTES).toInstant())) {
 
             TokenResponse tokenResponse = null;
-            if(cachedTokenResponse != null && cachedTokenResponse.getRefreshToken() != null) {
+            if (cachedTokenResponse != null && cachedTokenResponse.getRefreshToken() != null) {
                 log.info("Refreshing existing token");
                 MultiValueMap<String, String> request = getRefreshRequest(cachedTokenResponse.getRefreshToken());
                 tokenResponse = getTokenResponse(new HttpEntity<>(request, getRequestHeaders()));
             }
-            if(tokenResponse == null) {
+            if (tokenResponse == null) {
                 log.info("Obtaining new token for {}", whiskerAuthProperties.getUsername());
                 MultiValueMap<String, String> request = getLoginRequest();
                 tokenResponse = getTokenResponse(new HttpEntity<>(request, getRequestHeaders()));
@@ -98,9 +98,9 @@ public class TokenService {
         }
     }
 
-    private TokenResponse getTokenResponse(HttpEntity<MultiValueMap> httpEntity) {
+    private TokenResponse getTokenResponse(HttpEntity<MultiValueMap<String, String>> httpEntity) {
         TokenResponse tokenResponse = null;
-        ResponseEntity<TokenResponse> response = restTemplate.exchange(whiskerAuthProperties.getAuthEndpoint(), HttpMethod.POST, httpEntity, TokenResponse.class);
+        ResponseEntity<TokenResponse> response = tokenDelegate.getTokenResponse(httpEntity);
         if (response != null && !response.getStatusCode().isError() && response.getBody() != null && response.getBody().getAccessToken() != null) {
             log.info("Successfully retrieved token response: {}", response.getBody());
             tokenResponse = response.getBody();
