@@ -1,14 +1,14 @@
 whisker:
   auth:
     endpoint: https://autopets.sso.iothings.site/oauth/token
-    clientId: IYXzWN908psOm7sNpe4G.ios.whisker.robots
-    clientSecret: C63CLXOmwNaqLTB2xXo6QIWGwwBamcPuaul
+    clientId: ${CLIENT_ID}
+    clientSecret: ${CLIENT_SECRET}
     early-refresh-minutes: 5
     credentials:
       username: ${LITTER_ROBOT_USER}
       password: ${LITTER_ROBOT_PASSWORD}
   api:
-    key: p7ndMoj61npRZP5CVz9v4Uj0bG769xy6758QRBPb
+    key: ${API_KEY}
     default: https://v2.api.whisker.iothings.site
     endpointPaths:
       users: /users
