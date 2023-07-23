@@ -12,36 +12,41 @@ interface ActivityHistory {
   activities: Activity[]
 }
 
-const initialActivityHistory: ActivityHistory = {
-  activities: []
-}
-
 type ActivityHistoryContextState = {
-  activityHistory: ActivityHistory,
-  refreshActivityHistory: () => void
+  activityHistory?: ActivityHistory,
+  activityHistoryLoading: boolean,
+  activityHistoryError: boolean
 }
 
 const initialActivityHistoryContextState = {
-  activityHistory: initialActivityHistory,
-  refreshActivityHistory: () => {}
+  activityHistoryLoading: false,
+  activityHistoryError: false
 }
 
 export const ActivityHistoryContext = createContext<ActivityHistoryContextState>(initialActivityHistoryContextState);
 
 const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const { activityHistoryLimit } = useContext(SettingsContext);
+  const {activityHistoryLimit} = useContext(SettingsContext);
 
-  const [activityHistory, setActivityHistory] = useState<ActivityHistory>(initialActivityHistoryContextState.activityHistory);
+  const [activityHistory, setActivityHistory] = useState<ActivityHistory>();
+  const [activityHistoryLoading, setActivityHistoryLoading] = useState<boolean>(false);
+  const [activityHistoryError, setActivityHistoryError] = useState<boolean>(false);
 
   const refreshActivityHistory = () => {
+    setActivityHistoryLoading(true);
     axios.get(`api/activity/${activityHistoryLimit}`)
       .then(response => {
         setActivityHistory(response.data);
+        setActivityHistoryError(false);
       })
       .catch(error => {
         console.error(error);
-      });
+        setActivityHistoryError(true);
+      })
+      .finally(() => {
+        setActivityHistoryLoading(false);
+      });;
   }
 
   useEffect(() => {
@@ -51,7 +56,8 @@ const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
   return (
     <ActivityHistoryContext.Provider value={{
       activityHistory,
-      refreshActivityHistory
+      activityHistoryLoading,
+      activityHistoryError
     }}>
       {children}
     </ActivityHistoryContext.Provider>

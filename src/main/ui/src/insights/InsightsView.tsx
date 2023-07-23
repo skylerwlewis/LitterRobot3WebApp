@@ -1,6 +1,6 @@
 import React, {useContext, useMemo} from 'react';
 import '../App.css';
-import {Container, Paper, Typography} from "@mui/material";
+import {Alert, CircularProgress, Container, Paper, Typography} from "@mui/material";
 import {InsightsContext} from "./InsightsProvider";
 import {BarElement, CategoryScale, Chart as ChartJS, LinearScale} from "chart.js";
 import {Bar} from "react-chartjs-2";
@@ -41,12 +41,12 @@ const options = {
 
 const InsightsView = () => {
 
-  const {insights} = useContext(InsightsContext);
-
-  const rows = insights.cycleHistory.map(item => createData(item.date, item.cyclesCompleted));
+  const {insights, insightsLoading, insightsError} = useContext(InsightsContext);
 
   const accountBalanceData = useMemo(() => {
-    const sortedHistory = insights.cycleHistory.sort((a, b) => { return a.date.localeCompare(b.date) })
+    const sortedHistory = insights ? insights.cycleHistory.sort((a, b) => {
+      return a.date.localeCompare(b.date)
+    }) : [];
 
     return {
       labels: sortedHistory.map(item => item.date),
@@ -59,17 +59,31 @@ const InsightsView = () => {
         }
       ]
     };
-  }, [insights.cycleHistory]);
+  }, [insights]);
 
   return (
     <>
-      <Container component={Paper}>
-        <Typography variant="body1" color="text.primary">
-          There were a total of {insights.totalCycles} cycles over {insights.cycleHistory.length} days, an average of {insights.averageCycles.toFixed(3)} cycles per day.
-        </Typography>
-        <Bar data={accountBalanceData} options={options}/>
-
-      </Container>
+      {insights || accountBalanceData.labels.length > 0 ?
+        <Container component={Paper}>
+          {insights ?
+            <Typography variant="body1" color="text.primary">
+              There were a total of {insights.totalCycles} cycles over {insights.cycleHistory.length} days, an average
+              of {insights.averageCycles.toFixed(3)} cycles per day.
+            </Typography>
+            : null}
+          {accountBalanceData.labels.length > 0 ?
+            <Bar data={accountBalanceData} options={options}/>
+            : null
+          }
+        </Container>
+        :
+        insightsLoading ?
+          <CircularProgress/>
+          :
+          insightsError ?
+            <Alert severity="error">There was a problem retrieving the insights data.</Alert>
+            : null
+      }
     </>
   );
 }

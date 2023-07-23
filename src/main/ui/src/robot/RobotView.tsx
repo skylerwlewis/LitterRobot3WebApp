@@ -1,6 +1,16 @@
 import React, {useContext} from "react";
 import {RobotContext} from "./RobotProvider";
-import {Container, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {
+  Alert,
+  CircularProgress,
+  Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow
+} from "@mui/material";
 import moment from "moment";
 import {statusMap, timeFormatString} from "../StatusMap";
 
@@ -13,7 +23,7 @@ function createData(
 
 const RobotView = () => {
 
-  const {robot} = useContext(RobotContext);
+  const {robot, robotLoading, robotError} = useContext(RobotContext);
 
   const rows = robot ? [
     createData('Litter Robot ID', robot.litterRobotId),
@@ -53,6 +63,7 @@ const RobotView = () => {
 
   return (
     <>
+      {robot ?
         <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
           <Table>
             <TableBody>
@@ -70,6 +81,15 @@ const RobotView = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        :
+        robotLoading ?
+          <CircularProgress/>
+          :
+          robotError ?
+            <Alert severity="error">There was a problem retrieving Litter Robot data.</Alert>
+            : null
+      }
+
     </>
   );
 

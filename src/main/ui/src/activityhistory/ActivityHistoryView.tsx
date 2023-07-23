@@ -1,8 +1,9 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import '../App.css';
 import {
+  Alert,
   Button,
-  Chip,
+  Chip, CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -16,7 +17,6 @@ import {ActivityHistoryContext} from "./ActivityHistoryProvider";
 import {statusMap, timeFormatString} from "../StatusMap";
 import moment from "moment";
 import {green, grey, orange, red, yellow} from "@mui/material/colors";
-import {SettingsContext} from "../settings/SettingsProvider";
 import {useNavigate} from "react-router-dom";
 
 function createData(
@@ -31,9 +31,9 @@ const ActivityHistoryView = () => {
 
   const navigate = useNavigate();
 
-  const { activityHistory } = useContext(ActivityHistoryContext);
+  const {activityHistory, activityHistoryLoading, activityHistoryError} = useContext(ActivityHistoryContext);
 
-  const rows = activityHistory.activities.map(activity => createData(activity.unitStatus, statusMap[activity.unitStatus], moment(activity.timestamp + 'Z').format(timeFormatString)));
+  const rows = activityHistory ? activityHistory.activities.map(activity => createData(activity.unitStatus, statusMap[activity.unitStatus], moment(activity.timestamp + 'Z').format(timeFormatString))) : [];
 
   const getSx = (unitStatus: string) => {
     let sx = {};
@@ -69,44 +69,58 @@ const ActivityHistoryView = () => {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Timestamp</TableCell>
-              <TableCell align='center'>Status Code</TableCell>
-              <TableCell>Description</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.timestamp}
-                sx={{'&:last-child td, &:last-child th': {border: 0}}}
-              >
-                <TableCell component="th" scope="row">
-                  {row.timestamp}
-                </TableCell>
-                <TableCell align='center'>
-                  <Chip
-                    label={row.unitStatus}
-                    sx={getSx(row.unitStatus)}
-                  />
-                </TableCell>
-                <TableCell>
-                  {row.unitStatusText}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Typography>
-        Displaying the {activityHistory.activities.length} most recent activity items
-      </Typography>
-      <Button size='small' onClick={() => { navigate('/settings') }}>View more</Button>
+      {rows.length > 0 ?
+        <>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Timestamp</TableCell>
+                  <TableCell align='center'>Status Code</TableCell>
+                  <TableCell>Description</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.timestamp}
+                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.timestamp}
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Chip
+                        label={row.unitStatus}
+                        sx={getSx(row.unitStatus)}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      {row.unitStatusText}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Typography>
+            Displaying the {rows.length} most recent activity items
+          </Typography>
+          <Button size='small' onClick={() => {
+            navigate('/settings')
+          }}>View more</Button>
+        </>
+        :
+        activityHistoryLoading ?
+          <CircularProgress/>
+          :
+          activityHistoryError ?
+            <Alert severity="error">There was a problem retrieving the activity history data.</Alert>
+            : null
+      }
     </>
   );
+
 }
 
 export default ActivityHistoryView;

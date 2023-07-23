@@ -39,11 +39,13 @@ interface Robot {
 
 type RobotContextState = {
   robot?: Robot,
-  refreshRobot: () => void
+  robotLoading: boolean,
+  robotError: boolean
 }
 
 const initialRobotContextState = {
-  refreshRobot: () => {}
+  robotLoading: false,
+  robotError: false
 }
 
 export const RobotContext = createContext<RobotContextState>(initialRobotContextState);
@@ -51,14 +53,22 @@ export const RobotContext = createContext<RobotContextState>(initialRobotContext
 const RobotProvider = ({children}: PropsWithChildren<{}>) => {
 
   const [robot, setRobot] = useState<Robot>();
+  const [robotLoading, setRobotLoading] = useState<boolean>(false);
+  const [robotError, setRobotError] = useState<boolean>(false);
 
-  const refreshRobot = () => {
+  const refreshRobot = async () => {
+    setRobotLoading(true);
     axios.get(`api/robot`)
       .then(response => {
         setRobot(response.data);
+        setRobotError(false);
       })
       .catch(error => {
         console.error(error);
+        setRobotError(true);
+      })
+      .finally(() => {
+        setRobotLoading(false);
       });
   }
 
@@ -69,7 +79,8 @@ const RobotProvider = ({children}: PropsWithChildren<{}>) => {
   return (
     <RobotContext.Provider value={{
       robot,
-      refreshRobot
+      robotLoading,
+      robotError
     }}>
       {children}
     </RobotContext.Provider>

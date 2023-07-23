@@ -13,38 +13,41 @@ interface Insights {
   cycleHistory: CycleHistoryItem[]
 }
 
-const initialInsights: Insights = {
-  totalCycles: 0,
-  averageCycles: 0,
-  cycleHistory: []
-}
-
 type InsightsContextState = {
-  insights: Insights,
-  refreshInsights: () => void
+  insights?: Insights,
+  insightsLoading: boolean,
+  insightsError: boolean
 }
 
 const initialInsightsContextState = {
-  insights: initialInsights,
-  refreshInsights: () => {}
+  insightsLoading: false,
+  insightsError: false
 }
 
 export const InsightsContext = createContext<InsightsContextState>(initialInsightsContextState);
 
 const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const { insightsDays } = useContext(SettingsContext);
+  const {insightsDays} = useContext(SettingsContext);
 
-  const [insights, setInsights] = useState<Insights>(initialInsightsContextState.insights);
+  const [insights, setInsights] = useState<Insights>();
+  const [insightsLoading, setInsightsLoading] = useState<boolean>(false);
+  const [insightsError, setInsightsError] = useState<boolean>(false);
 
   const refreshInsights = () => {
+    setInsightsLoading(true);
     axios.get(`api/insights/${insightsDays}`)
       .then(response => {
         setInsights(response.data);
+        setInsightsError(false);
       })
       .catch(error => {
         console.error(error);
-      });
+        setInsightsError(true);
+      })
+      .finally(() => {
+        setInsightsLoading(false);
+      });;
   }
 
   useEffect(() => {
@@ -54,7 +57,8 @@ const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
   return (
     <InsightsContext.Provider value={{
       insights,
-      refreshInsights
+      insightsLoading,
+      insightsError
     }}>
       {children}
     </InsightsContext.Provider>
