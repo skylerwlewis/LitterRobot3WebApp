@@ -13,6 +13,7 @@ whisker:
     endpointPaths:
       users: /users
       robots: /users/{userId}/robots
-      robot: /users/{userId}/robots/{robotId}
-      activity: /users/{userId}/robots/{robotId}/activity?limit={limit}
-      insights: /users/{userId}/robots/{robotId}/robot.insights?days={days}
+      robot:
+        details: /users/{userId}/robots/{robotId}
+        activity: /users/{userId}/robots/{robotId}/activity?limit={limit}
+        insights: /users/{userId}/robots/{robotId}/robot.insights?days={days}

@@ -13,6 +13,7 @@ whisker:
     endpointPaths:
       users: /not-used-for-testing
       robots: /not-used-for-testing
-      robot: /not-used-for-testing
-      activity: /not-used-for-testing
-      insights: /not-used-for-testing
+      robot:
+        details: /not-used-for-testing
+        activity: /not-used-for-testing
+        insights: /not-used-for-testing
