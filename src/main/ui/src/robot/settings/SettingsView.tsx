@@ -23,7 +23,7 @@ const SettingsView = () => {
   const [insightsDaysString, setInsightsDaysString] = useState<string>(insightsDays.toString());
 
   const saveValues = () => {
-    if(isInteger(activityHistoryLimitString) && isInteger(insightsDaysString)) {
+    if (isInteger(activityHistoryLimitString) && isInteger(insightsDaysString)) {
       setActivityHistoryLimit(Number(activityHistoryLimitString));
       setInsightsDays(Number(insightsDaysString));
     }
@@ -66,7 +66,9 @@ const SettingsView = () => {
           error={!isInteger(insightsDaysString)}
         />
         <div>
-          <Button variant="contained" sx={{ marginBottom: '1em' }} onClick={() => { saveValues() }}>Save</Button>
+          <Button variant="contained" sx={{marginBottom: '1em'}} onClick={() => {
+            saveValues()
+          }}>Save</Button>
         </div>
       </Container>
     </>

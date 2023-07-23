@@ -1,14 +1,14 @@
 import React, {useContext} from "react";
 import {
   Alert,
-  Card, CardActionArea,
-  CardContent, CircularProgress,
+  Card,
+  CardActionArea,
+  CardContent,
+  CircularProgress,
   Container,
-  Paper,
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableRow
 } from "@mui/material";
 import {UserContext} from "./UserProvider";

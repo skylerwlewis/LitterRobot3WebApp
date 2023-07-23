@@ -41,7 +41,7 @@ const options = {
 
 const InsightsView = () => {
 
-  const { robotId } = useParams();
+  const {robotId} = useParams();
   const navigate = useNavigate();
 
   const {insights, insightsLoading, insightsError} = useContext(InsightsContext);

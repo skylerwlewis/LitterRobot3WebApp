@@ -53,7 +53,7 @@ export const RobotContext = createContext<RobotContextState>(initialRobotContext
 
 const RobotProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const { robotId } = useParams();
+  const {robotId} = useParams();
 
   const [robot, setRobot] = useState<Robot>();
   const [robotLoading, setRobotLoading] = useState<boolean>(initialRobotContextState.robotLoading);

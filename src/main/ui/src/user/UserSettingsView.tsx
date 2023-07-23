@@ -1,16 +1,5 @@
 import React, {useContext} from "react";
-import {
-  Alert,
-  Card,
-  CardContent, CircularProgress,
-  Container,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow
-} from "@mui/material";
+import {Alert, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {UserContext} from "./UserProvider";
 
 function createData(
@@ -41,31 +30,31 @@ const UserSettingsView = () => {
 
   return (
     <>
-        {settingsRows.length > 0 ?
-          <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
-            <Table>
-              <TableBody>
-                {settingsRows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.value}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+      {settingsRows.length > 0 ?
+        <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
+          <Table>
+            <TableBody>
+              {settingsRows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.value}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        :
+        userLoading ?
+          <CircularProgress/>
           :
-          userLoading ?
-            <CircularProgress/>
-            :
-            userError ?
-              <Alert severity="error">There was a problem retrieving the settings data.</Alert>
-              : null}
+          userError ?
+            <Alert severity="error">There was a problem retrieving the settings data.</Alert>
+            : null}
     </>
   );
 

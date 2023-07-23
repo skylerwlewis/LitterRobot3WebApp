@@ -1,16 +1,5 @@
 import React, {useContext} from "react";
-import {
-  Alert,
-  Card,
-  CardContent, CircularProgress,
-  Container,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow
-} from "@mui/material";
+import {Alert, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {UserContext} from "./UserProvider";
 
 function createData(

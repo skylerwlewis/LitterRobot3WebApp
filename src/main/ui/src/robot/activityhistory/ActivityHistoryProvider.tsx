@@ -28,7 +28,7 @@ export const ActivityHistoryContext = createContext<ActivityHistoryContextState>
 
 const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const { robotId } = useParams();
+  const {robotId} = useParams();
 
   const {activityHistoryLimit} = useContext(SettingsContext);
 
@@ -49,7 +49,8 @@ const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
       })
       .finally(() => {
         setActivityHistoryLoading(false);
-      });;
+      });
+
   }
 
   useEffect(() => {

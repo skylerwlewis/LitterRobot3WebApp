@@ -29,7 +29,7 @@ export const InsightsContext = createContext<InsightsContextState>(initialInsigh
 
 const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const { robotId } = useParams();
+  const {robotId} = useParams();
 
   const {insightsDays} = useContext(SettingsContext);
 
@@ -50,7 +50,8 @@ const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
       })
       .finally(() => {
         setInsightsLoading(false);
-      });;
+      });
+
   }
 
   useEffect(() => {

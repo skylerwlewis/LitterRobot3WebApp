@@ -8,7 +8,7 @@ interface MenuToolbarProps {
   links: MenuLink[]
 }
 
-const MenuToolbar = ({ logoText, links, children }: PropsWithChildren<MenuToolbarProps>) => {
+const MenuToolbar = ({logoText, links, children}: PropsWithChildren<MenuToolbarProps>) => {
 
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const MenuToolbar = ({ logoText, links, children }: PropsWithChildren<MenuToolba
         href='/'
         sx={{
           mr: 2,
-          display: { xs: 'none', md: 'flex' },
+          display: {xs: 'none', md: 'flex'},
           fontFamily: 'monospace',
           fontWeight: 700,
           letterSpacing: '.3rem',
@@ -34,13 +34,15 @@ const MenuToolbar = ({ logoText, links, children }: PropsWithChildren<MenuToolba
 
       {children}
 
-      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+      <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
         {links.map(link => {
           return (
             <Button
               key={link.key}
-              onClick={() => { navigate(link.url) }}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => {
+                navigate(link.url)
+              }}
+              sx={{my: 2, color: 'white', display: 'block'}}
             >
               {link.text}
             </Button>

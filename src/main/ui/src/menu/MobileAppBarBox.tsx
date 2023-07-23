@@ -9,7 +9,7 @@ interface MobileAppBarBoxProps {
   links: MenuLink[]
 }
 
-const MobileAppBarBox = ({ logoText, links }: MobileAppBarBoxProps) => {
+const MobileAppBarBox = ({logoText, links}: MobileAppBarBoxProps) => {
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const MobileAppBarBox = ({ logoText, links }: MobileAppBarBoxProps) => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
         <IconButton
           size="large"
           aria-label="button to open appbar menu"
@@ -34,7 +34,7 @@ const MobileAppBarBox = ({ logoText, links }: MobileAppBarBoxProps) => {
           onClick={handleOpenNavMenu}
           color="inherit"
         >
-          <MenuIcon />
+          <MenuIcon/>
         </IconButton>
         <Menu
           id="menu-appbar"
@@ -51,7 +51,7 @@ const MobileAppBarBox = ({ logoText, links }: MobileAppBarBoxProps) => {
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
           sx={{
-            display: { xs: 'block', md: 'none' },
+            display: {xs: 'block', md: 'none'},
           }}
         >
           {links.map(link => {
@@ -75,7 +75,7 @@ const MobileAppBarBox = ({ logoText, links }: MobileAppBarBoxProps) => {
         href=""
         sx={{
           mr: 2,
-          display: { xs: 'flex', md: 'none' },
+          display: {xs: 'flex', md: 'none'},
           flexGrow: 1,
           fontFamily: 'monospace',
           fontWeight: 700,

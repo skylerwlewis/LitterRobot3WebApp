@@ -35,8 +35,8 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <MenuToolbar logoText={logoText} links={links} >
-          <MobileAppBarBox logoText={logoText} links={links} />
+        <MenuToolbar logoText={logoText} links={links}>
+          <MobileAppBarBox logoText={logoText} links={links}/>
         </MenuToolbar>
       </Container>
     </AppBar>

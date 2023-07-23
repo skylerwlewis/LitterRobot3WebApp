@@ -1,9 +1,11 @@
 import React, {useContext} from "react";
 import {RobotContext} from "./RobotProvider";
 import {
-  Alert, Button,
+  Alert,
+  Button,
   ButtonGroup,
-  CircularProgress, Container,
+  CircularProgress,
+  Container,
   Paper,
   Table,
   TableBody,

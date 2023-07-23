@@ -1,4 +1,4 @@
-import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
+import React, {createContext, PropsWithChildren, useEffect, useState} from "react";
 import axios from "axios";
 
 interface Settings {
@@ -77,7 +77,8 @@ const UserProvider = ({children}: PropsWithChildren<{}>) => {
       })
       .finally(() => {
         setUserLoading(false);
-      });;
+      });
+
   }
 
   useEffect(() => {

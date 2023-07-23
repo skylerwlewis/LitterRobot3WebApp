@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import RobotProvider from "./robot/RobotProvider";
 import RobotView from "./robot/RobotView";
-import {BrowserRouter as Router, Route, Routes, Outlet} from "react-router-dom";
+import {BrowserRouter as Router, Outlet, Route, Routes} from "react-router-dom";
 import ActivityHistoryView from "./robot/activityhistory/ActivityHistoryView";
 import ActivityHistoryProvider from "./robot/activityhistory/ActivityHistoryProvider";
 import ResponsiveAppBar from "./menu/ResponsiveAppBar";
