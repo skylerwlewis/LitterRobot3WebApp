@@ -19,7 +19,7 @@ public class WhiskerApiProperties {
     private String robotEndpoint;
     @Value("${whisker.api.default}${whisker.api.endpointPaths.activity}")
     private String activityEndpoint;
-    @Value("${whisker.api.default}${whisker.api.endpointPaths.insights}")
+    @Value("${whisker.api.default}${whisker.api.endpointPaths.robot.insights}")
     private String insightsEndpoint;
 
 }

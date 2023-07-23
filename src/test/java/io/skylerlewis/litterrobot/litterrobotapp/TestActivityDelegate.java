@@ -35,14 +35,14 @@ public class TestActivityDelegate implements ActivityDelegate {
 
         Resource resource = resourceLoader.getResource("classpath:" + robotsJsonPath);
         if (!resource.exists()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "there is no insights content");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "there is no robot.insights content");
         }
 
         ActivityHistory activityHistory = null;
         try {
             activityHistory = mapper.readValue(resource.getInputStream(), ActivityHistory.class);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "there was a problem reading the insights json file");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "there was a problem reading the robot.insights json file");
         }
 
         response = ResponseEntity.ok(activityHistory);

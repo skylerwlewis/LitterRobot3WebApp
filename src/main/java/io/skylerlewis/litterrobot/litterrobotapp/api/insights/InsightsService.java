@@ -33,7 +33,7 @@ public class InsightsService {
 
         ResponseEntity<Insights> response = insightsDelegate.getRobotInsights(params);
         if (response != null && response.getBody() != null) {
-            log.info("Successfully retrieved robot insights: {}", response.getBody());
+            log.info("Successfully retrieved robot robot.insights: {}", response.getBody());
             insights = response.getBody();
         }
         return insights;

@@ -1,6 +1,7 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SettingsContext} from "../settings/SettingsProvider";
+import {useParams} from "react-router-dom";
 
 interface CycleHistoryItem {
   date: string,
@@ -28,6 +29,8 @@ export const InsightsContext = createContext<InsightsContextState>(initialInsigh
 
 const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
 
+  const { robotId } = useParams();
+
   const {insightsDays} = useContext(SettingsContext);
 
   const [insights, setInsights] = useState<Insights>();
@@ -36,7 +39,7 @@ const InsightsProvider = ({children}: PropsWithChildren<{}>) => {
 
   const refreshInsights = () => {
     setInsightsLoading(true);
-    axios.get(`api/insights/${insightsDays}`)
+    axios.get(`/api/robot/${robotId}/insights/${insightsDays}`)
       .then(response => {
         setInsights(response.data);
         setInsightsError(false);

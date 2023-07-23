@@ -3,11 +3,15 @@ package io.skylerlewis.litterrobot.litterrobotapp.api.user.model;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @ToString
 public class User {
-    private String userId;
-    private String userEmail;
-    private String firstName;
-    private String lastName;
+
+    private UserDetails user;
+    private List<LitterRobot> litterRobots;
+    private List<MobileDevice> mobileDevices;
+    private Settings settings;
+
 }

@@ -1,6 +1,7 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SettingsContext} from "../settings/SettingsProvider";
+import {useParams} from "react-router-dom";
 
 interface Activity {
   unitStatus: string,
@@ -27,6 +28,8 @@ export const ActivityHistoryContext = createContext<ActivityHistoryContextState>
 
 const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
 
+  const { robotId } = useParams();
+
   const {activityHistoryLimit} = useContext(SettingsContext);
 
   const [activityHistory, setActivityHistory] = useState<ActivityHistory>();
@@ -35,7 +38,7 @@ const ActivityHistoryProvider = ({children}: PropsWithChildren<{}>) => {
 
   const refreshActivityHistory = () => {
     setActivityHistoryLoading(true);
-    axios.get(`api/activity/${activityHistoryLimit}`)
+    axios.get(`/api/robot/${robotId}/activity/${activityHistoryLimit}`)
       .then(response => {
         setActivityHistory(response.data);
         setActivityHistoryError(false);

@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
-import {Button, Container, TextField, Typography} from "@mui/material";
+import {Button, ButtonGroup, Container, TextField, Typography} from "@mui/material";
 import {SettingsContext} from "./SettingsProvider";
+import {useNavigate, useParams} from "react-router-dom";
 
 const isInteger = (value: string) => {
   return !!value && !isNaN(Number(value)) && Number.isInteger(Number(value));
@@ -15,6 +16,9 @@ const SettingsView = () => {
     setInsightsDays
   } = useContext(SettingsContext);
 
+  const {robotId} = useParams();
+  const navigate = useNavigate();
+
   const [activityHistoryLimitString, setActivityHistoryLimitString] = useState<string>(activityHistoryLimit.toString());
   const [insightsDaysString, setInsightsDaysString] = useState<string>(insightsDays.toString());
 
@@ -27,6 +31,20 @@ const SettingsView = () => {
 
   return (
     <>
+      <Container>
+        <ButtonGroup variant="contained">
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}`)
+          }}>Details</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/activity`)
+          }}>Activity</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/insights`)
+          }}>Insights</Button>
+          <Button disabled>Settings</Button>
+        </ButtonGroup>
+      </Container>
       <Container>
         <Typography>Enter new values to change the limits.</Typography>
         <TextField

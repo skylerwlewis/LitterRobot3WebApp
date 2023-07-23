@@ -9,19 +9,19 @@ const logoText = 'LR';
 
 const links: MenuLink[] = [
   {
-    key: 'robot',
-    text: 'Robot',
+    key: 'user',
+    text: 'User',
     url: '/'
   },
   {
-    key: 'activity',
-    text: 'Activity',
-    url: '/activity'
+    key: 'robots',
+    text: 'Robots',
+    url: '/robots'
   },
   {
-    key: 'insights',
-    text: 'Insights',
-    url: '/insights'
+    key: 'devices',
+    text: 'Devices',
+    url: '/devices'
   },
   {
     key: 'settings',

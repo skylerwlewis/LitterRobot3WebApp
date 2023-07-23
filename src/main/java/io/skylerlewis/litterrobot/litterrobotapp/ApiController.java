@@ -6,10 +6,13 @@ import io.skylerlewis.litterrobot.litterrobotapp.api.insights.InsightsService;
 import io.skylerlewis.litterrobot.litterrobotapp.api.insights.model.Insights;
 import io.skylerlewis.litterrobot.litterrobotapp.api.robot.RobotService;
 import io.skylerlewis.litterrobot.litterrobotapp.api.robot.model.Robot;
+import io.skylerlewis.litterrobot.litterrobotapp.api.user.UserService;
+import io.skylerlewis.litterrobot.litterrobotapp.api.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -19,15 +22,19 @@ import java.util.Optional;
 @Slf4j
 public class ApiController {
 
-    private RobotService robotService;
-    private ActivityService activityService;
-    private InsightsService insightsService;
+    private final UserService userService;
+    private final RobotService robotService;
+    private final ActivityService activityService;
+    private final InsightsService insightsService;
 
     private String litterRobotId;
 
-    public ApiController(@Autowired RobotService robotService,
+    public ApiController(
+            @Autowired UserService userService,
+            @Autowired RobotService robotService,
                          @Autowired ActivityService activityService,
                          @Autowired InsightsService insightsService) {
+        this.userService = userService;
         this.robotService = robotService;
         this.activityService = activityService;
         this.insightsService = insightsService;
@@ -38,30 +45,29 @@ public class ApiController {
         }
     }
 
-    @RequestMapping("/robot")
-    public Robot getRobot() {
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public User getUser() {
+        return userService.getUser();
+    }
+
+    @RequestMapping(value = "/robot/{robotId}", method = RequestMethod.GET)
+    public Robot getRobot(@PathVariable String robotId) {
         Robot robot = null;
-        if(litterRobotId != null) {
-            robot = robotService.getRobot(litterRobotId);
-        }
+        robot = robotService.getRobot(robotId);
         return robot;
     }
 
-    @RequestMapping("/activity/{limit}")
-    public ActivityHistory getActivity(@PathVariable Integer limit) {
+    @RequestMapping(value = "/robot/{robotId}/activity/{limit}", method = RequestMethod.GET)
+    public ActivityHistory getActivity(@PathVariable String robotId, @PathVariable Integer limit) {
         ActivityHistory activityHistory = null;
-        if(litterRobotId != null) {
-            activityHistory = activityService.getActivityHistory(litterRobotId, limit);
-        }
+        activityHistory = activityService.getActivityHistory(robotId, limit);
         return activityHistory;
     }
 
-    @RequestMapping("/insights/{days}")
-    public Insights getInsights(@PathVariable Integer days) {
+    @RequestMapping(value = "/robot/{robotId}/insights/{days}", method = RequestMethod.GET)
+    public Insights getInsights(@PathVariable String robotId, @PathVariable Integer days) {
         Insights insights = null;
-        if(litterRobotId != null) {
-            insights = insightsService.getRobotInsights(litterRobotId, days);
-        }
+        insights = insightsService.getRobotInsights(robotId, days);
         return insights;
     }
 

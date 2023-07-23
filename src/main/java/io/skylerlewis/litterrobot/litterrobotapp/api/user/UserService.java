@@ -1,6 +1,6 @@
 package io.skylerlewis.litterrobot.litterrobotapp.api.user;
 
-import io.skylerlewis.litterrobot.litterrobotapp.api.user.model.UsersResponse;
+import io.skylerlewis.litterrobot.litterrobotapp.api.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ public class UserService {
         this.userDelegate = userDelegate;
     }
 
-    public UsersResponse getUser() {
-        UsersResponse user = null;
-        ResponseEntity<UsersResponse> response = userDelegate.getUser();
+    public User getUser() {
+        User user = null;
+        ResponseEntity<User> response = userDelegate.getUser();
         if (response != null && response.getBody() != null) {
             log.info("Successfully retrieved users: {}", response.getBody());
             user = response.getBody();

@@ -1,8 +1,19 @@
 import React, {useContext} from "react";
 import {RobotContext} from "./RobotProvider";
-import {Alert, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {
+  Alert, Button,
+  ButtonGroup,
+  CircularProgress, Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow
+} from "@mui/material";
 import moment from "moment";
 import {statusMap, timeFormatString} from "../StatusMap";
+import {useNavigate, useParams} from "react-router-dom";
 
 function createData(
   name: string,
@@ -12,6 +23,10 @@ function createData(
 }
 
 const RobotView = () => {
+
+
+  const {robotId} = useParams();
+  const navigate = useNavigate();
 
   const {robot, robotLoading, robotError} = useContext(RobotContext);
 
@@ -53,6 +68,20 @@ const RobotView = () => {
 
   return (
     <>
+      <Container>
+        <ButtonGroup variant="contained">
+          <Button disabled>Details</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/activity`)
+          }}>Activity</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/insights`)
+          }}>Insights</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/settings`)
+          }}>Settings</Button>
+        </ButtonGroup>
+      </Container>
       {robot ?
         <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
           <Table>
@@ -76,7 +105,7 @@ const RobotView = () => {
           <CircularProgress/>
           :
           robotError ?
-            <Alert severity="error">There was a problem retrieving Litter Robot data.</Alert>
+            <Alert severity="error">There was a problem retrieving the insights data.</Alert>
             : null
       }
 

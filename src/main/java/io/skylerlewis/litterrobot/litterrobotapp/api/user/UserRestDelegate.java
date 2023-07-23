@@ -2,7 +2,7 @@ package io.skylerlewis.litterrobot.litterrobotapp.api.user;
 
 import io.skylerlewis.litterrobot.litterrobotapp.api.WhiskerApiProperties;
 import io.skylerlewis.litterrobot.litterrobotapp.api.WhiskerDelegate;
-import io.skylerlewis.litterrobot.litterrobotapp.api.user.model.UsersResponse;
+import io.skylerlewis.litterrobot.litterrobotapp.api.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -22,8 +22,8 @@ public class UserRestDelegate extends WhiskerDelegate implements UserDelegate {
         this.whiskerApiProperties = whiskerApiProperties;
     }
 
-    public ResponseEntity<UsersResponse> getUser() {
-        return restTemplate.exchange(whiskerApiProperties.getUsersEndpoint(), HttpMethod.GET, new HttpEntity(getRequestHeaders()), UsersResponse.class);
+    public ResponseEntity<User> getUser() {
+        return restTemplate.exchange(whiskerApiProperties.getUsersEndpoint(), HttpMethod.GET, new HttpEntity(getRequestHeaders()), User.class);
     }
 
 }

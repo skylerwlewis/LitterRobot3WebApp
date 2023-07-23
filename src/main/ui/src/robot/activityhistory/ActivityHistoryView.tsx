@@ -1,10 +1,9 @@
 import React, {useContext} from 'react';
-import '../App.css';
 import {
   Alert,
-  Button,
+  Button, ButtonGroup,
   Chip,
-  CircularProgress,
+  CircularProgress, Container,
   Paper,
   Table,
   TableBody,
@@ -15,10 +14,10 @@ import {
   Typography
 } from "@mui/material";
 import {ActivityHistoryContext} from "./ActivityHistoryProvider";
-import {statusMap, timeFormatString} from "../StatusMap";
+import {statusMap, timeFormatString} from "../../StatusMap";
 import moment from "moment";
 import {green, grey, orange, red, yellow} from "@mui/material/colors";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 function createData(
   unitStatus: string,
@@ -30,6 +29,7 @@ function createData(
 
 const ActivityHistoryView = () => {
 
+  const {robotId} = useParams();
   const navigate = useNavigate();
 
   const {activityHistory, activityHistoryLoading, activityHistoryError} = useContext(ActivityHistoryContext);
@@ -70,6 +70,20 @@ const ActivityHistoryView = () => {
 
   return (
     <>
+      <Container>
+        <ButtonGroup variant="contained">
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}`)
+          }}>Details</Button>
+          <Button disabled>Activity</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/insights`)
+          }}>Insights</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/settings`)
+          }}>Settings</Button>
+        </ButtonGroup>
+      </Container>
       {rows.length > 0 ?
         <>
           <TableContainer component={Paper}>
@@ -108,7 +122,7 @@ const ActivityHistoryView = () => {
             Displaying the {rows.length} most recent activity items
           </Typography>
           <Button size='small' onClick={() => {
-            navigate('/settings')
+            navigate(`/robot/${robotId}/settings`)
           }}>View more</Button>
         </>
         :

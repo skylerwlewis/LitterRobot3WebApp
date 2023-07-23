@@ -1,5 +1,6 @@
 import React, {createContext, PropsWithChildren, useEffect, useState} from "react";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 interface Robot {
   litterRobotId: string,
@@ -52,13 +53,15 @@ export const RobotContext = createContext<RobotContextState>(initialRobotContext
 
 const RobotProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const [robot, setRobot] = useState<Robot>();
-  const [robotLoading, setRobotLoading] = useState<boolean>(false);
-  const [robotError, setRobotError] = useState<boolean>(false);
+  const { robotId } = useParams();
 
-  const refreshRobot = async () => {
+  const [robot, setRobot] = useState<Robot>();
+  const [robotLoading, setRobotLoading] = useState<boolean>(initialRobotContextState.robotLoading);
+  const [robotError, setRobotError] = useState<boolean>(initialRobotContextState.robotError);
+
+  const refreshRobot = () => {
     setRobotLoading(true);
-    axios.get(`api/robot`)
+    axios.get(`/api/robot/${robotId}`)
       .then(response => {
         setRobot(response.data);
         setRobotError(false);
@@ -74,7 +77,7 @@ const RobotProvider = ({children}: PropsWithChildren<{}>) => {
 
   useEffect(() => {
     refreshRobot();
-  }, []);
+  }, [robotId]);
 
   return (
     <RobotContext.Provider value={{

@@ -1,10 +1,10 @@
 import React, {useContext, useMemo} from 'react';
-import '../App.css';
-import {Alert, CircularProgress, Container, Paper, Typography} from "@mui/material";
+import {Alert, Button, ButtonGroup, CircularProgress, Container, Paper, Typography} from "@mui/material";
 import {InsightsContext} from "./InsightsProvider";
 import {BarElement, CategoryScale, Chart as ChartJS, LinearScale} from "chart.js";
 import {Bar} from "react-chartjs-2";
 import {blue} from "@mui/material/colors";
+import {useNavigate, useParams} from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -41,6 +41,9 @@ const options = {
 
 const InsightsView = () => {
 
+  const { robotId } = useParams();
+  const navigate = useNavigate();
+
   const {insights, insightsLoading, insightsError} = useContext(InsightsContext);
 
   const accountBalanceData = useMemo(() => {
@@ -63,6 +66,20 @@ const InsightsView = () => {
 
   return (
     <>
+      <Container>
+        <ButtonGroup variant="contained">
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}`)
+          }}>Details</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/activity`)
+          }}>Activity</Button>
+          <Button disabled>Insights</Button>
+          <Button onClick={() => {
+            navigate(`/robot/${robotId}/settings`)
+          }}>Settings</Button>
+        </ButtonGroup>
+      </Container>
       {insights || accountBalanceData.labels.length > 0 ?
         <Container component={Paper}>
           {insights ?
