@@ -15,7 +15,7 @@ const RobotView = () => {
 
   const {robot} = useContext(RobotContext);
 
-  const rows = [
+  const rows = robot ? [
     createData('Litter Robot ID', robot.litterRobotId),
     createData('Serial Number', robot.litterRobotSerial),
     createData('Nickname', robot.litterRobotNickname),
@@ -49,7 +49,7 @@ const RobotView = () => {
     createData('Is Onboarded?', robot.isOnboarded ? 'Yes' : 'No'),
     createData('Did Notify Offline?', robot.didNotifyOffline ? 'Yes' : 'No'),
     createData('Auto Offline Disabled?', robot.autoOfflineDisabled ? 'Yes' : 'No')
-  ];
+  ] : [];
 
   return (
     <>

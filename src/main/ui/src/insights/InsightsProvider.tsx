@@ -14,26 +14,9 @@ interface Insights {
 }
 
 const initialInsights: Insights = {
-  totalCycles: 100,
-  averageCycles: 3.5,
-  cycleHistory: [
-    {
-      date: '2023-01-05',
-      cyclesCompleted: 3
-    },
-    {
-      date: '2023-01-04',
-      cyclesCompleted: 4
-    },
-    {
-      date: '2023-01-03',
-      cyclesCompleted: 4
-    },
-    {
-      date: '2023-01-02',
-      cyclesCompleted: 3
-    }
-  ]
+  totalCycles: 0,
+  averageCycles: 0,
+  cycleHistory: []
 }
 
 type InsightsContextState = {

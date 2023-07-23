@@ -1,9 +1,7 @@
 import React, {useContext, useMemo} from 'react';
 import '../App.css';
-import {Button, Card, CardActions, CardContent, CardMedia, Container, Paper, Typography} from "@mui/material";
+import {Container, Paper, Typography} from "@mui/material";
 import {InsightsContext} from "./InsightsProvider";
-import {SettingsContext} from "../settings/SettingsProvider";
-import {useNavigate} from "react-router-dom";
 import {BarElement, CategoryScale, Chart as ChartJS, LinearScale} from "chart.js";
 import {Bar} from "react-chartjs-2";
 import {blue} from "@mui/material/colors";
@@ -43,10 +41,7 @@ const options = {
 
 const InsightsView = () => {
 
-  const navigate = useNavigate();
-
   const {insights} = useContext(InsightsContext);
-  const {insightsDays} = useContext(SettingsContext);
 
   const rows = insights.cycleHistory.map(item => createData(item.date, item.cyclesCompleted));
 
@@ -70,7 +65,7 @@ const InsightsView = () => {
     <>
       <Container component={Paper}>
         <Typography variant="body1" color="text.primary">
-          There were a total of {insights.totalCycles} cycles over {insightsDays} days, an average of {insights.averageCycles.toFixed(3)} cycles per day.
+          There were a total of {insights.totalCycles} cycles over {insights.cycleHistory.length} days, an average of {insights.averageCycles.toFixed(3)} cycles per day.
         </Typography>
         <Bar data={accountBalanceData} options={options}/>
 

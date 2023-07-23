@@ -37,49 +37,12 @@ interface Robot {
   autoOfflineDisabled: boolean
 }
 
-const initialRobot: Robot = {
-  litterRobotId: "1f559f3137ec8a",
-  litterRobotSerial: "LR3CI488589",
-  litterRobotNickname: "Luna's Litterbox",
-  deviceType: "iot",
-  cycleCount: "19",
-  totalCycleCount: "847",
-  cycleCapacity: "23",
-  newCycleCapacity: "20",
-  savedCycleCapacity: "24",
-  isDFITriggered: "1",
-  isDf1Triggered: "1",
-  isDf2Triggered: "1",
-  isDfsTriggered: "1",
-  isManualReset: "0",
-  savedIsManualReset: "0",
-  previousDFITriggered: "0",
-  DFICycleCount: "847",
-  savedCycleCount: "18",
-  cleanCycleWaitTimeMinutes: "7",
-  cyclesAfterDrawerFull: 20,
-  nightLightActive: "1",
-  panelLockActive: "0",
-  sleepModeActive: "0",
-  sleepModeTime: null,
-  powerStatus: "AC",
-  unitStatus: "RDY",
-  sleepModeEndTime: "0",
-  sleepModeStartTime: "0",
-  lastSeen: "2023-07-16T13:25:41.338128",
-  setupDate: "2022-02-03T22:14:18.858069",
-  isOnboarded: true,
-  didNotifyOffline: false,
-  autoOfflineDisabled: true
-}
-
 type RobotContextState = {
-  robot: Robot,
+  robot?: Robot,
   refreshRobot: () => void
 }
 
 const initialRobotContextState = {
-  robot: initialRobot,
   refreshRobot: () => {}
 }
 
@@ -87,7 +50,7 @@ export const RobotContext = createContext<RobotContextState>(initialRobotContext
 
 const RobotProvider = ({children}: PropsWithChildren<{}>) => {
 
-  const [robot, setRobot] = useState<Robot>(initialRobot);
+  const [robot, setRobot] = useState<Robot>();
 
   const refreshRobot = () => {
     axios.get(`api/robot`)

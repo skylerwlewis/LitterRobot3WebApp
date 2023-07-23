@@ -32,7 +32,6 @@ const ActivityHistoryView = () => {
   const navigate = useNavigate();
 
   const { activityHistory } = useContext(ActivityHistoryContext);
-  const { activityHistoryLimit } = useContext(SettingsContext);
 
   const rows = activityHistory.activities.map(activity => createData(activity.unitStatus, statusMap[activity.unitStatus], moment(activity.timestamp + 'Z').format(timeFormatString)));
 
@@ -103,7 +102,7 @@ const ActivityHistoryView = () => {
         </Table>
       </TableContainer>
       <Typography>
-        Displaying the {activityHistoryLimit} most recent activity items
+        Displaying the {activityHistory.activities.length} most recent activity items
       </Typography>
       <Button size='small' onClick={() => { navigate('/settings') }}>View more</Button>
     </>
