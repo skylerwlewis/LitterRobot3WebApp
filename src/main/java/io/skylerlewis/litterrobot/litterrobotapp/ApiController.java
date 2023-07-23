@@ -27,8 +27,6 @@ public class ApiController {
     private final ActivityService activityService;
     private final InsightsService insightsService;
 
-    private String litterRobotId;
-
     public ApiController(
             @Autowired UserService userService,
             @Autowired RobotService robotService,
@@ -38,11 +36,6 @@ public class ApiController {
         this.robotService = robotService;
         this.activityService = activityService;
         this.insightsService = insightsService;
-
-        Optional<String> litterRobotId = robotService.getRobots().stream().map(Robot::getLitterRobotId).findFirst();
-        if(litterRobotId.isPresent()) {
-            this.litterRobotId = litterRobotId.get();
-        }
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)

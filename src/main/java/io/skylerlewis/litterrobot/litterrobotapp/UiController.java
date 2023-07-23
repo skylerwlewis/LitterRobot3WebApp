@@ -9,7 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class UiController {
 
-    @RequestMapping(value = { "/", "/activity","/insights","/settings"  })
+    @RequestMapping(value = {
+            "/",
+            "/robots",
+            "/devices",
+            "/settings",
+            "robot/{robotId}",
+            "robot/{robotId}/activity",
+            "robot/{robotId}/insights",
+            "robot/{robotId}/settings"
+    })
     public String getIndex(HttpServletRequest inRequest) {
         return "/index.html";
     }

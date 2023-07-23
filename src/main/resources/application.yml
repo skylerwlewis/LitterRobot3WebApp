@@ -16,4 +16,4 @@ whisker:
       robot:
         details: /users/{userId}/robots/{robotId}
         activity: /users/{userId}/robots/{robotId}/activity?limit={limit}
-        insights: /users/{userId}/robots/{robotId}/robot.insights?days={days}
+        insights: /users/{userId}/robots/{robotId}/insights?days={days}
