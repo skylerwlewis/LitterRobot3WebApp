@@ -34,13 +34,10 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <ResponsiveAppBar/>
           <UserProvider>
+          <ResponsiveAppBar/>
             <Routes>
-              <Route path="/" element={<UserView/>}/>
-              <Route path="/robots" element={<RobotsView/>}/>
-              <Route path="/devices" element={<DevicesView/>}/>
-              <Route path="/settings" element={<UserSettingsView/>}/>
+              <Route path="/" element={<RobotsView/>}/>
               <Route path="/robot/:robotId" element={
                 <SettingsProvider>
                   <RobotProvider>
@@ -57,6 +54,9 @@ const App = () => {
                 <Route path="insights" element={<InsightsView/>}/>
                 <Route path="settings" element={<SettingsView/>}/>
               </Route>
+              <Route path="/user" element={<UserView/>}/>
+              <Route path="/devices" element={<DevicesView/>}/>
+              <Route path="/settings" element={<UserSettingsView/>}/>
             </Routes>
           </UserProvider>
         </Router>

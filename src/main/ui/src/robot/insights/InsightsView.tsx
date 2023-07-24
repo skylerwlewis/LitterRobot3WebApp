@@ -12,13 +12,6 @@ ChartJS.register(
   BarElement
 );
 
-function createData(
-  date: string,
-  cyclesCompleted: number
-) {
-  return {date, cyclesCompleted};
-}
-
 const options = {
   indexAxis: 'x' as 'x',
   // Elements options apply to all of the options unless overridden in a dataset

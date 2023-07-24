@@ -9,14 +9,17 @@ const logoText = 'LR';
 
 const links: MenuLink[] = [
   {
-    key: 'user',
-    text: 'User',
-    url: '/'
-  },
-  {
     key: 'robots',
     text: 'Robots',
-    url: '/robots'
+    url: '/'
+  }
+]
+
+const userLinks: MenuLink[] = [
+  {
+    key: 'user',
+    text: 'User',
+    url: '/user'
   },
   {
     key: 'devices',
@@ -35,7 +38,7 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <MenuToolbar logoText={logoText} links={links}>
+        <MenuToolbar logoText={logoText} links={links} userLinks={userLinks}>
           <MobileAppBarBox logoText={logoText} links={links}/>
         </MenuToolbar>
       </Container>
