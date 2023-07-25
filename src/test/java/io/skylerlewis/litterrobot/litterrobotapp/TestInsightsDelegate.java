@@ -31,18 +31,18 @@ public class TestInsightsDelegate implements InsightsDelegate {
     @Override
     public ResponseEntity<Insights> getRobotInsights(Map<String, String> params) {
         ResponseEntity<Insights> response = null;
-        String robotsJsonPath = "unitTestJsonFiles/" + params.get("userId") + "/" + params.get("robotId") + "/robot.insights.json";
+        String robotsJsonPath = "unitTestJsonFiles/" + params.get("userId") + "/" + params.get("robotId") + "/insights.json";
 
         Resource resource = resourceLoader.getResource("classpath:" + robotsJsonPath);
         if (!resource.exists()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "there is no robot.insights content");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "there is no insights content");
         }
 
         Insights insights = null;
         try {
             insights = mapper.readValue(resource.getInputStream(), Insights.class);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "there was a problem reading the robot.insights json file");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "there was a problem reading the insights json file");
         }
 
         response = ResponseEntity.ok(insights);
