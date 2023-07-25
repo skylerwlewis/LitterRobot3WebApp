@@ -32,9 +32,13 @@ const DevicesView = () => {
   return (
     <>
       {mobileDeviceRows.length > 0 ?
-        <Container>
+        <Container sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly'
+        }}>
           {mobileDeviceRows.map((rows, index) =>
-            <Card sx={{maxWidth: 345}} key={index}>
+            <Card key={index}>
               <CardContent>
                 <Table>
                   <TableBody>

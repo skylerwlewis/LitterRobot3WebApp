@@ -9,7 +9,7 @@ function createData(
   return {name, value};
 }
 
-const UserSettingsView = () => {
+const SettingsView = () => {
 
   const {user, userLoading, userError} = useContext(UserContext);
 
@@ -60,4 +60,4 @@ const UserSettingsView = () => {
 
 }
 
-export default UserSettingsView;
+export default SettingsView;

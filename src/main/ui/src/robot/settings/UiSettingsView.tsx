@@ -1,20 +1,20 @@
 import React, {useContext, useState} from "react";
 import {Button, ButtonGroup, Container, TextField, Typography} from "@mui/material";
-import {SettingsContext} from "./SettingsProvider";
+import {UiSettingsContext} from "./UiSettingsProvider";
 import {useNavigate, useParams} from "react-router-dom";
 
 const isInteger = (value: string) => {
   return !!value && !isNaN(Number(value)) && Number.isInteger(Number(value));
 };
 
-const SettingsView = () => {
+const UiSettingsView = () => {
 
   const {
     activityHistoryLimit,
     setActivityHistoryLimit,
     insightsDays,
     setInsightsDays
-  } = useContext(SettingsContext);
+  } = useContext(UiSettingsContext);
 
   const {robotId} = useParams();
   const navigate = useNavigate();
@@ -76,4 +76,4 @@ const SettingsView = () => {
 
 }
 
-export default SettingsView;
+export default UiSettingsView;

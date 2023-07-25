@@ -1,21 +1,21 @@
 import React from 'react';
 import './App.css';
-import RobotProvider from "./robot/RobotProvider";
-import RobotView from "./robot/RobotView";
+import RobotDetailsProvider from "./robot/details/RobotDetailsProvider";
+import RobotDetailsView from "./robot/details/RobotDetailsView";
 import {BrowserRouter as Router, Outlet, Route, Routes} from "react-router-dom";
-import ActivityHistoryView from "./robot/activityhistory/ActivityHistoryView";
-import ActivityHistoryProvider from "./robot/activityhistory/ActivityHistoryProvider";
+import ActivityHistoryView from "./robot/activity/ActivityHistoryView";
+import ActivityHistoryProvider from "./robot/activity/ActivityHistoryProvider";
 import ResponsiveAppBar from "./menu/ResponsiveAppBar";
 import {createTheme, ThemeProvider} from "@mui/material";
-import SettingsView from "./robot/settings/SettingsView";
-import SettingsProvider from "./robot/settings/SettingsProvider";
+import UiSettingsView from "./robot/settings/UiSettingsView";
+import UiSettingsProvider from "./robot/settings/UiSettingsProvider";
 import InsightsView from "./robot/insights/InsightsView";
 import InsightsProvider from "./robot/insights/InsightsProvider";
 import UserProvider from "./user/UserProvider";
 import UserView from "./user/UserView";
 import RobotsView from "./user/RobotsView";
 import DevicesView from "./user/DevicesView";
-import UserSettingsView from "./user/UserSettingsView";
+import SettingsView from "./user/SettingsView";
 
 const theme = createTheme({
   palette: {
@@ -39,24 +39,24 @@ const App = () => {
             <Routes>
               <Route path="/" element={<RobotsView/>}/>
               <Route path="/robot/:robotId" element={
-                <SettingsProvider>
-                  <RobotProvider>
+                <UiSettingsProvider>
+                  <RobotDetailsProvider>
                     <ActivityHistoryProvider>
                       <InsightsProvider>
                         <Outlet/>
                       </InsightsProvider>
                     </ActivityHistoryProvider>
-                  </RobotProvider>
-                </SettingsProvider>
+                  </RobotDetailsProvider>
+                </UiSettingsProvider>
               }>
-                <Route index element={<RobotView/>}/>
+                <Route index element={<RobotDetailsView/>}/>
                 <Route path="activity" element={<ActivityHistoryView/>}/>
                 <Route path="insights" element={<InsightsView/>}/>
-                <Route path="settings" element={<SettingsView/>}/>
+                <Route path="settings" element={<UiSettingsView/>}/>
               </Route>
               <Route path="/user" element={<UserView/>}/>
               <Route path="/devices" element={<DevicesView/>}/>
-              <Route path="/settings" element={<UserSettingsView/>}/>
+              <Route path="/settings" element={<SettingsView/>}/>
             </Routes>
           </UserProvider>
         </Router>

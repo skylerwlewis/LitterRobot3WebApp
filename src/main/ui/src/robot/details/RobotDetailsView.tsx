@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {RobotContext} from "./RobotProvider";
+import {RobotContext} from "./RobotDetailsProvider";
 import {
   Alert,
   Button,
@@ -14,7 +14,7 @@ import {
   TableRow
 } from "@mui/material";
 import moment from "moment";
-import {statusMap, timeFormatString} from "../StatusMap";
+import {statusMap, timeFormatString} from "../../StatusMap";
 import {useNavigate, useParams} from "react-router-dom";
 
 function createData(
@@ -24,7 +24,7 @@ function createData(
   return {name, value};
 }
 
-const RobotView = () => {
+const RobotDetailsView = () => {
 
 
   const {robotId} = useParams();
@@ -116,4 +116,4 @@ const RobotView = () => {
 
 }
 
-export default RobotView;
+export default RobotDetailsView;

@@ -64,7 +64,7 @@ const UserProvider = ({children}: PropsWithChildren<{}>) => {
   const [userLoading, setUserLoading] = useState<boolean>(false);
   const [userError, setUserError] = useState<boolean>(false);
 
-  const refreshUser = () => {
+  useEffect(() => {
     setUserLoading(true);
     axios.get(`/api/user`)
       .then(response => {
@@ -78,11 +78,6 @@ const UserProvider = ({children}: PropsWithChildren<{}>) => {
       .finally(() => {
         setUserLoading(false);
       });
-
-  }
-
-  useEffect(() => {
-    refreshUser();
   }, []);
 
   return (

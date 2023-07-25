@@ -51,7 +51,7 @@ const initialRobotContextState = {
 
 export const RobotContext = createContext<RobotContextState>(initialRobotContextState);
 
-const RobotProvider = ({children}: PropsWithChildren<{}>) => {
+const RobotDetailsProvider = ({children}: PropsWithChildren<{}>) => {
 
   const {robotId} = useParams();
 
@@ -59,7 +59,7 @@ const RobotProvider = ({children}: PropsWithChildren<{}>) => {
   const [robotLoading, setRobotLoading] = useState<boolean>(initialRobotContextState.robotLoading);
   const [robotError, setRobotError] = useState<boolean>(initialRobotContextState.robotError);
 
-  const refreshRobot = () => {
+  useEffect(() => {
     setRobotLoading(true);
     axios.get(`/api/robot/${robotId}`)
       .then(response => {
@@ -73,10 +73,6 @@ const RobotProvider = ({children}: PropsWithChildren<{}>) => {
       .finally(() => {
         setRobotLoading(false);
       });
-  }
-
-  useEffect(() => {
-    refreshRobot();
   }, [robotId]);
 
   return (
@@ -90,4 +86,4 @@ const RobotProvider = ({children}: PropsWithChildren<{}>) => {
   );
 }
 
-export default RobotProvider;
+export default RobotDetailsProvider;
