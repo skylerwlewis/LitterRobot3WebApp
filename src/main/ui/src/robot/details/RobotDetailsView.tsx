@@ -107,7 +107,7 @@ const RobotDetailsView = () => {
           <CircularProgress/>
           :
           robotError ?
-            <Alert severity="error">There was a problem retrieving the insights data.</Alert>
+            <Alert severity="error">There was a problem retrieving the robot details data.</Alert>
             : null
       }
 
