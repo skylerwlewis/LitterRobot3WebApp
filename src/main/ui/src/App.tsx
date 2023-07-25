@@ -35,7 +35,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <UserProvider>
-          <ResponsiveAppBar/>
+            <ResponsiveAppBar/>
             <Routes>
               <Route path="/" element={<RobotsView/>}/>
               <Route path="/robot/:robotId" element={

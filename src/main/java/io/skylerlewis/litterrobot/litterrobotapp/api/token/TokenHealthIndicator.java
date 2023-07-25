@@ -19,7 +19,7 @@ public class TokenHealthIndicator implements HealthIndicator {
         String userId = tokenService.getUserId();
         String accessToken = tokenService.getAccessToken();
         Health.Builder healthBuilder = Health.down();
-        if(userId != null && accessToken != null) {
+        if (userId != null && accessToken != null) {
             healthBuilder = Health.up();
         }
         return healthBuilder.build();
