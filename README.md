@@ -1,4 +1,4 @@
-# Litter Robot 3 Spring Boot App
+# Litter Robot 3 Web App
 
 Whisker has applications for mobile phones, but does not currently offer a browser-based portal for customers. This Spring Boot app aims to be that portal. Run this on a trusted local network to check your cat's litterbox activity from a browser.
 
