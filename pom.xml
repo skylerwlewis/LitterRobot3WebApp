@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.skylerlewis.litterrobot</groupId>
-    <artifactId>LitterRobotApp</artifactId>
+    <artifactId>LitterRobot3WebApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>LitterRobotApp</name>
+    <name>LitterRobot3WebApp</name>
     <description>Litter Robot 3 Web App</description>
     <properties>
         <java.version>17</java.version>
