@@ -5,7 +5,7 @@ import MenuToolbar from './MenuToolbar';
 import MobileAppBarBox from './MobileAppBarBox';
 import MenuLink from './MenuLink';
 
-const logoText = 'LR';
+const logoText = 'LR3';
 
 const links: MenuLink[] = [
   {
