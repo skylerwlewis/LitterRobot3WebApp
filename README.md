@@ -35,3 +35,15 @@ LitterRobot3WebApp-0.0.1.jar
   - [hexfusion/homeassistant-litter-robot](https://github.com/hexfusion/homeassistant-litter-robot/blob/master/custom_components/litter_robot/litter_robot.py#L100-L101)
   - [mannkind/litterrobot2mqtt](https://github.com/mannkind/litterrobot2mqtt/blob/main/LitterRobot/DataAccess/SourceDAO.cs#L398-L400)
   - [natekspencer/LitterRobotManager](https://github.com/natekspencer/LitterRobotManager/blob/master/smartapps/natekspencer/litter-robot-manager.src/litter-robot-manager.groovy#L121-L122)
+
+---
+## Sample Screenshots
+
+![Robots](docs/screenshots/1_Robots.png)
+![Robot Details](docs/screenshots/2_RobotDetails.png)
+![Activity History](docs/screenshots/3_RobotActivityHistory.png)
+![Insights](docs/screenshots/4_RobotInsights.png)
+![UI Settings](docs/screenshots/5_RobotUiSettings.png)
+![User Info](docs/screenshots/6_UserInfo.png)
+![Mobile Devices](docs/screenshots/7_UserMobileDevices.png)
+![Settings](docs/screenshots/8_UserSettings.png)
