@@ -3,7 +3,7 @@
 Whisker has applications for mobile phones, but does not currently offer a browser-based portal for customers. This Spring Boot app aims to be that portal. Run this on a trusted local network to check your cat's litterbox activity from a browser.
 
 ## Tools Used
-- [Spring Boot](https://start.spring.io)
+- [Spring Boot](https://spring.io/projects/spring-boot)
 - Whisker's Litter Robot 3 API
 - [Create React App](https://github.com/facebook/create-react-app)
 - [Material UI](https://mui.com)
