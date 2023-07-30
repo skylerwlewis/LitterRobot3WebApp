@@ -20,7 +20,7 @@ java -jar \
 -DCLIENT_ID=whisker-client-id \
 -DCLIENT_SECRET=whisker-client-secret \
 -DAPI_KEY=whisker-api-key \
-LitterRobot3WebApp-0.0.1.jar
+LitterRobot3WebApp-0.0.2.jar
 ```
 
 - `LITTER_ROBOT_USER` is your Whisker account email.

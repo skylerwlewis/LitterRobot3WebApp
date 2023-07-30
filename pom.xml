@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.skylerlewis.litterrobot</groupId>
     <artifactId>LitterRobot3WebApp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>LitterRobot3WebApp</name>
     <description>Litter Robot 3 Web App</description>
