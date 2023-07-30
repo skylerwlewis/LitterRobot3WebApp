@@ -11,13 +11,13 @@ public class UiController {
 
     @RequestMapping(value = {
             "/",
-            "/robots",
-            "/devices",
-            "/settings",
             "robot/{robotId}",
             "robot/{robotId}/activity",
             "robot/{robotId}/insights",
-            "robot/{robotId}/settings"
+            "robot/{robotId}/settings",
+            "/user",
+            "/devices",
+            "/settings",
     })
     public String getIndex(HttpServletRequest inRequest) {
         return "/index.html";
