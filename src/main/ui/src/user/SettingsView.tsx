@@ -2,10 +2,10 @@ import React, {useContext} from "react";
 import {Alert, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {UserContext} from "./UserProvider";
 
-function createData(
+const createData = (
   name: string,
   value: string
-) {
+) => {
   return {name, value};
 }
 

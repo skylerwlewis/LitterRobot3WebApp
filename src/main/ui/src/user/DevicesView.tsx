@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import {UserContext} from "./UserProvider";
 
-function createData(
+const createData = (
   name: string,
   value: string
-) {
+) => {
   return {name, value};
 }
 

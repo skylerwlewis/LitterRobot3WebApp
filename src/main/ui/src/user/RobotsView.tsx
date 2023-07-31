@@ -14,10 +14,10 @@ import {
 import {UserContext} from "./UserProvider";
 import {useNavigate} from "react-router-dom";
 
-function createData(
+const createData = (
   name: string,
   value: string
-) {
+) => {
   return {name, value};
 }
 

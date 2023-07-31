@@ -21,11 +21,11 @@ import moment from "moment";
 import {green, grey, orange, red, yellow} from "@mui/material/colors";
 import {useNavigate, useParams} from "react-router-dom";
 
-function createData(
+const createData = (
   unitStatus: string,
   unitStatusText: string,
   timestamp: string
-) {
+) => {
   return {unitStatus, unitStatusText, timestamp};
 }
 

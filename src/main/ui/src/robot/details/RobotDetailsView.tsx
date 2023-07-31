@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useMemo} from "react";
 import {RobotContext} from "./RobotDetailsProvider";
 import {
   Alert,
@@ -11,16 +11,21 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableRow
+  TableRow, Typography
 } from "@mui/material";
 import moment from "moment";
 import {statusMap, timeFormatString} from "../../StatusMap";
 import {useNavigate, useParams} from "react-router-dom";
+import {ArcElement, Chart as ChartJS} from 'chart.js';
+import {Pie} from 'react-chartjs-2';
+import {green, grey, orange, red, yellow} from "@mui/material/colors";
 
-function createData(
+ChartJS.register(ArcElement);
+
+const createData = (
   name: string,
   value: string
-) {
+) => {
   return {name, value};
 }
 
@@ -68,6 +73,29 @@ const RobotDetailsView = () => {
     createData('Auto Offline Disabled?', robot.autoOfflineDisabled ? 'Yes' : 'No')
   ] : [];
 
+  const cycleCountNum = useMemo(() => robot ? Number(robot.cycleCount) : undefined, [robot]);
+  const cycleCapacityNum = useMemo(() => robot ? Number(robot.cycleCapacity) : undefined, [robot]);
+  const percentFull = useMemo(() => !cycleCountNum || !cycleCapacityNum ? undefined : 100 * cycleCountNum / cycleCapacityNum, [cycleCountNum, cycleCapacityNum]);
+
+  const data = {
+    labels: percentFull ? ['Full', 'Remaining'] : [],
+    datasets: percentFull ? [
+      {
+        label: '% Capacity',
+        data: [percentFull, 100 - percentFull],
+        backgroundColor: [
+          grey[100],
+          percentFull < 50 ? green[100] : percentFull < 70 ? yellow[400] : percentFull < 90 ? orange[400] : red[400]
+        ],
+        borderColor: [
+          grey[100],
+          percentFull < 50 ? green[500] : percentFull < 70 ? yellow[700] : percentFull < 90 ? orange[900] : red[900]
+        ],
+        borderWidth: 1,
+      },
+    ] : [],
+  };
+
   return (
     <>
       <Container>
@@ -85,23 +113,37 @@ const RobotDetailsView = () => {
         </ButtonGroup>
       </Container>
       {robot ?
-        <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
-          <Table>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.value}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <>
+          <Container sx={{
+            maxHeight: '10em',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: '1em',
+            marginBottom: '2em',
+            height: 'fit-content'
+          }}>
+            {percentFull ? <Typography>Robot is {percentFull.toFixed(3)}% full</Typography> : null}
+            <Pie data={data}/>
+          </Container>
+          <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
+            <Table>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.name}
+                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">{row.value}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </>
         :
         robotLoading ?
           <CircularProgress/>
