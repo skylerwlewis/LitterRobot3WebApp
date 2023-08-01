@@ -78,20 +78,18 @@ const RobotDetailsView = () => {
   const percentFull = useMemo(() => !cycleCountNum || !cycleCapacityNum ? undefined : 100 * cycleCountNum / cycleCapacityNum, [cycleCountNum, cycleCapacityNum]);
 
   const data = {
-    labels: percentFull ? ['Full', 'Remaining'] : [],
-    datasets: percentFull ? [
+    labels: cycleCountNum && cycleCapacityNum ? ['Full', 'Remaining'] : [],
+    datasets: cycleCountNum && cycleCapacityNum ? [
       {
-        label: '% Capacity',
-        data: [percentFull, 100 - percentFull],
+        data: [cycleCountNum],
+        circumference: cycleCountNum && cycleCapacityNum ? 360 * cycleCountNum / cycleCapacityNum : 0,
         backgroundColor: [
-          grey[100],
-          percentFull < 50 ? green[100] : percentFull < 70 ? yellow[400] : percentFull < 90 ? orange[400] : red[400]
+          percentFull ? (percentFull < 50 ? green[100] : percentFull < 70 ? yellow[400] : percentFull < 90 ? orange[400] : red[400]) : grey[500]
         ],
         borderColor: [
-          grey[100],
-          percentFull < 50 ? green[500] : percentFull < 70 ? yellow[700] : percentFull < 90 ? orange[900] : red[900]
+          percentFull ? (percentFull < 50 ? green[500] : percentFull < 70 ? yellow[700] : percentFull < 90 ? orange[900] : red[900]) : grey[900]
         ],
-        borderWidth: 1,
+        borderWidth: 1
       },
     ] : [],
   };
@@ -123,7 +121,7 @@ const RobotDetailsView = () => {
             marginBottom: '2em',
             height: 'fit-content'
           }}>
-            {percentFull ? <Typography>Robot is {percentFull.toFixed(3)}% full</Typography> : null}
+            {cycleCountNum && cycleCapacityNum ? <Typography>{cycleCountNum} cycles complete since last reset, {cycleCapacityNum - cycleCountNum} cycles remaining</Typography> : null}
             <Pie data={data}/>
           </Container>
           <TableContainer component={Paper} sx={{maxWidth: 'sm', margin: 'auto'}}>
