@@ -18,7 +18,7 @@ import {
 import {ActivityHistoryContext} from "./ActivityHistoryProvider";
 import {statusMap, timeFormatString} from "../../StatusMap";
 import moment from "moment";
-import {green, grey, orange, red, yellow} from "@mui/material/colors";
+import {common, green, grey, orange, red, yellow} from "@mui/material/colors";
 import {useNavigate, useParams} from "react-router-dom";
 
 const createData = (
@@ -43,28 +43,37 @@ const ActivityHistoryView = () => {
     switch (unitStatus) {
       case 'RDY':
       case 'CCC':
-        sx = {backgroundColor: green[300], color: 'white'};
+        sx = {backgroundColor: green[300], color: common.white};
         break;
       case 'CCP':
       case 'CST':
-        sx = {backgroundColor: yellow[600], color: 'black'};
+      case 'EC':
+        sx = {backgroundColor: yellow[600], color: common.black};
         break;
       case 'CSI':
       case 'CSF':
       case 'SDF':
       case 'DFS':
-        sx = {backgroundColor: red[800], color: 'white'};
+      case 'DHF':
+      case 'DPF':
+      case 'HPF':
+      case 'OTF':
+      case 'PD':
+      case 'SCF':
+      case 'SPF':
+        sx = {backgroundColor: red[800], color: common.white};
         break;
       case 'DF1':
-        sx = {backgroundColor: orange[500], color: 'black'};
+        sx = {backgroundColor: orange[500], color: common.black};
         break;
       case 'DF2':
-        sx = {backgroundColor: orange[900], color: 'white'};
+        sx = {backgroundColor: orange[900], color: common.white};
         break;
       case 'BR':
       case 'P':
       case 'OFF':
-        sx = {backgroundColor: grey[600], color: 'white'};
+      case 'OFFLINE':
+        sx = {backgroundColor: grey[600], color: common.white};
         break;
     }
     return sx;
