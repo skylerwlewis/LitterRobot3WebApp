@@ -1,3 +1,6 @@
+> [!NOTE]
+> I no longer use this project, so I am archiving this project's repository. I am keeping it here as a reference for the future.
+
 # Litter Robot 3 Web App
 
 Whisker has applications for mobile phones, but does not currently offer a browser-based portal for customers. This Spring Boot app aims to be that portal for Litter Robot 3. Run this on a trusted local network to check your Litter Robot 3 activity from a browser.
